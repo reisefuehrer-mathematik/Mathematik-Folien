@@ -1,0 +1,80 @@
+\mode<presentation>
+
+\makeatletter
+% Big-Roman Page numbering
+\usepackage{romanbarpagenumber}
+
+\usepackage{transparent}
+\usepackage{tikz}
+
+\usetikzlibrary{calc}
+
+%\usebackgroundtemplate{
+    %\tikz[remember picture,overlay]{\node[anchor=south east] at ($(current page.south east)+(3cm, -1cm)$) {\includegraphics{pattern.pdf}};}
+%}
+
+\defbeamertemplate{page number in head/foot}{romanappendixframenumber}{%
+	\ifnum\insertappendixframenumber<\insertmainframenumber%
+		\setbox\beamer@tempbox=\hbox{\insertmainframenumber\,/\,\insertmainframenumber}%
+	\else%
+		\setbox\beamer@tempbox=\hbox{\insertappendixframenumber\,/\,\insertappendixframenumber}%
+	\fi%
+	\beamer@tempdim=\wd\beamer@tempbox%
+	\ifbeamer@inappendix%
+  	\makebox[\beamer@tempdim][r]{\Roman@bar{\@Roman\insertframenumberinappendix}\,/\,\Roman@bar{\@Roman\insertappendixframenumber}}%
+  \else%
+  	\makebox[\beamer@tempdim][r]{\insertframenumber\,/\,\insertmainframenumber}%
+  \fi%
+}
+
+\defbeamertemplate*{title page}{reisefuhrer}[1][] {
+  \vbox{}
+  \vfill
+  \begingroup
+    \centering
+    \begin{beamercolorbox}[sep=8pt,center,#1]{title}
+      \usebeamerfont{title}\inserttitle\par%
+      \ifx\insertsubtitle\@empty%
+      \else%
+        \vskip.5em%
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+      \fi%     
+    \end{beamercolorbox}%
+    \vskip1em\par
+    {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
+    \vskip1em\par
+    %\begin{beamercolorbox}[sep=8pt,center,#1]{author}
+    %  \usebeamerfont{author}\insertauthor
+    %\end{beamercolorbox}
+    %\begin{beamercolorbox}[sep=8pt,center,#1]{institute}
+    %  \usebeamerfont{institute}\insertinstitute
+    %\end{beamercolorbox}
+    %\begin{beamercolorbox}[sep=8pt,center,#1]{date}
+    %  \usebeamerfont{date}\insertdate
+    %\end{beamercolorbox}\vskip0.5em
+  \endgroup
+  \vfill
+}
+\makeatother
+
+%\useoutertheme{infolines}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{page number in head/foot}[romanappendixframenumber]
+%\setbeamertemplate{footline}[frame number]
+
+\defbeamertemplate{footline}{frame number 2}{
+  \hfill%
+  \usebeamercolor[fg]{page number in head/foot}%
+  \usebeamerfont{page number in head/foot}%
+  %\setbeamertemplate{page number in head/foot}[appendixframenumber]%
+  \usebeamertemplate*{page number in head/foot}\kern1em\vskip2pt%
+}
+
+\setbeamertemplate{footline}[frame number 2]
+%\setbeamertemplate{page number in head/foot}[framenumber]
+
+\setbeamertemplate{title page}[reisefuhrer]
+\setbeamertemplate{enumerate items}[circle]
+\setbeamertemplate{itemize items}[circle]
+
+\mode<all>

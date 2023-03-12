@@ -1,0 +1,27 @@
+{
+	"latex-workshop.latex.outDir": "%WORKSPACE_FOLDER%/out/%RELATIVE_DIR%",
+	"latex-workshop.latex.texDirs": [
+		"%WORKSPACE_FOLDER%/theme"
+	],
+	"latex-workshop.latex.tools": [
+		{
+		  "name": "latexmk",
+		  "command": "latexmk",
+		  "args": [
+			"-synctex=1",
+			"-interaction=nonstopmode",
+			"-file-line-error",
+			"-pdf",
+			"-outdir=%OUTDIR%",
+			"%DOC%"
+		  ],
+		  "env": {
+			"TEXINPUTS": "%WORKSPACE_FOLDER%/theme/:"
+		  }
+		},
+	],
+	"editor.rulers": [
+		120
+	],
+	"ltex.language": "de-DE",
+}
